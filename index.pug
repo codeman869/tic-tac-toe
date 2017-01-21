@@ -1,0 +1,46 @@
+.container-flud
+  .col-md-4.col-md-offset-4
+    .page-header 
+      .text-center 
+        h2 Tic Tac Toe
+.container-fluid(ng-app="tictactoe")
+  .col-md-4.col-md-offset-4
+    .text-center.gameboard(ng-controller="GameController as game")
+      .row.gamerow.matchmycols
+        .col-md-4.s-r(ng-click="game.playPosition(0)")
+          .text-center
+            h1(class="animated" ng-class="{'slideInLeft' : game.s[0] != '&nbsp;' }" ng-bind-html="game.s[0] | HTMLFilter")
+        .col-md-4.s-r(ng-click="game.playPosition(1)")
+          .text-center
+            h1(class="animated" ng-bind-html="game.s[1] | HTMLFilter" ng-class="{'bounceInDown' : game.s[1] != '&nbsp;' }")
+        .col-md-4(ng-click="game.playPosition(2)")
+          .text-center
+            h1(class="animated" ng-bind-html="game.s[2] | HTMLFilter" ng-class="{'slideInRight' : game.s[2] != '&nbsp;' }")
+      .row.gamerow.matchmycols
+        .col-md-4.s-t.s-r(ng-click="game.playPosition(3)")
+          .text-center
+            h1(class="animated" ng-bind-html="game.s[3] | HTMLFilter"  ng-disabled="game.gameStopped" ng-class="{'slideInLeft' : game.s[3] != '&nbsp;' }")
+        .col-md-4.s-t.s-r(ng-click="game.playPosition(4)")
+          .text-center
+            h1(class="animated" ng-bind-html="game.s[4] | HTMLFilter"  ng-disabled="game.gameStopped" ng-class="{'bounceInDown' : game.s[4] != '&nbsp;' }")
+        .col-md-4.s-t(ng-click="game.playPosition(5)")
+          .text-center
+            h1(class="animated" ng-bind-html="game.s[5] | HTMLFilter"  ng-disabled="game.gameStopped" ng-class="{'slideInRight' : game.s[5] != '&nbsp;' }")
+      .row.gamerow.matchmycols
+        .col-md-4.s-t.s-r(ng-click="game.playPosition(6)")
+          .text-center
+            h1(class="animated" ng-bind-html="game.s[6] | HTMLFilter"  ng-disabled="game.gameStopped" ng-class="{'slideInLeft' : game.s[6] != '&nbsp;' }")
+        .col-md-4.s-t.s-r(ng-click="game.playPosition(7)")
+          .text-center
+            h1(class="animated" ng-bind-html="game.s[7] | HTMLFilter"  ng-disabled="game.gameStopped" ng-class="{'bounceInDown' : game.s[7] != '&nbsp;' }")
+        .col-md-4.s-t(ng-click="game.playPosition(8)")
+          .text-center
+            h1(class="animated" ng-bind-html="game.s[8] | HTMLFilter"  ng-disabled="game.gameStopped" ng-class="{'slideInRight' : game.s[8] != '&nbsp;' }")
+      .row(style="margin-top:20px;")
+        .btn-group
+          button(type="button" class="btn btn-primary" ng-disabled="game.player1 == 'X' || game.gameInProgress" ng-click="game.swapPieces()") X
+          button(type="button" class="btn btn-primary" ng-disabled="game.player1 == 'O' || game.gameInProgress" ng-click="game.swapPieces()") O
+      .row(style="margin-top:20px;")
+        button.btn.btn-default(ng-click="game.init()") Reset
+      .row
+        h3(ng-if="game.gameStatus != ''" class="animated" ng-class="{'bounce' : game.gameStatus == 'In progress...', 'rotateIn' : game.gameStatus == 'Cats game!' || game.gameStatus == 'YOU WON!!' ||  game.gameStatus == 'You Lost!!'}") {{game.gameStatus}}

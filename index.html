@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  
+<div class="container-flud">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="page-header"> 
+      <div class="text-center"> 
+        <h2>Tic Tac Toe</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" ng-app="tictactoe">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="text-center gameboard" ng-controller="GameController as game">
+      <div class="row gamerow matchmycols">
+        <div class="col-md-4 s-r" ng-click="game.playPosition(0)">
+          <div class="text-center">
+            <h1 class="animated" ng-class="{'slideInLeft' : game.s[0] != '&amp;nbsp;' }" ng-bind-html="game.s[0] | HTMLFilter"></h1>
+          </div>
+        </div>
+        <div class="col-md-4 s-r" ng-click="game.playPosition(1)">
+          <div class="text-center">
+            <h1 class="animated" ng-bind-html="game.s[1] | HTMLFilter" ng-class="{'bounceInDown' : game.s[1] != '&amp;nbsp;' }"></h1>
+          </div>
+        </div>
+        <div class="col-md-4" ng-click="game.playPosition(2)">
+          <div class="text-center">
+            <h1 class="animated" ng-bind-html="game.s[2] | HTMLFilter" ng-class="{'slideInRight' : game.s[2] != '&amp;nbsp;' }"></h1>
+          </div>
+        </div>
+      </div>
+      <div class="row gamerow matchmycols">
+        <div class="col-md-4 s-t s-r" ng-click="game.playPosition(3)">
+          <div class="text-center">
+            <h1 class="animated" ng-bind-html="game.s[3] | HTMLFilter" ng-disabled="game.gameStopped" ng-class="{'slideInLeft' : game.s[3] != '&amp;nbsp;' }"></h1>
+          </div>
+        </div>
+        <div class="col-md-4 s-t s-r" ng-click="game.playPosition(4)">
+          <div class="text-center">
+            <h1 class="animated" ng-bind-html="game.s[4] | HTMLFilter" ng-disabled="game.gameStopped" ng-class="{'bounceInDown' : game.s[4] != '&amp;nbsp;' }"></h1>
+          </div>
+        </div>
+        <div class="col-md-4 s-t" ng-click="game.playPosition(5)">
+          <div class="text-center">
+            <h1 class="animated" ng-bind-html="game.s[5] | HTMLFilter" ng-disabled="game.gameStopped" ng-class="{'slideInRight' : game.s[5] != '&amp;nbsp;' }"></h1>
+          </div>
+        </div>
+      </div>
+      <div class="row gamerow matchmycols">
+        <div class="col-md-4 s-t s-r" ng-click="game.playPosition(6)">
+          <div class="text-center">
+            <h1 class="animated" ng-bind-html="game.s[6] | HTMLFilter" ng-disabled="game.gameStopped" ng-class="{'slideInLeft' : game.s[6] != '&amp;nbsp;' }"></h1>
+          </div>
+        </div>
+        <div class="col-md-4 s-t s-r" ng-click="game.playPosition(7)">
+          <div class="text-center">
+            <h1 class="animated" ng-bind-html="game.s[7] | HTMLFilter" ng-disabled="game.gameStopped" ng-class="{'bounceInDown' : game.s[7] != '&amp;nbsp;' }"></h1>
+          </div>
+        </div>
+        <div class="col-md-4 s-t" ng-click="game.playPosition(8)">
+          <div class="text-center">
+            <h1 class="animated" ng-bind-html="game.s[8] | HTMLFilter" ng-disabled="game.gameStopped" ng-class="{'slideInRight' : game.s[8] != '&amp;nbsp;' }"></h1>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:20px">
+        <div class="btn-group">
+          <button class="btn btn-primary" type="button" ng-disabled="game.player1 == 'X' || game.gameInProgress" ng-click="game.swapPieces()">X</button>
+          <button class="btn btn-primary" type="button" ng-disabled="game.player1 == 'O' || game.gameInProgress" ng-click="game.swapPieces()">O</button>
+        </div>
+      </div>
+      <div class="row" style="margin-top:20px">
+        <button class="btn btn-default" ng-click="game.init()">Reset</button>
+      </div>
+      <div class="row">
+        <h3 class="animated" ng-if="game.gameStatus != ''" ng-class="{'bounce' : game.gameStatus == 'In progress...', 'rotateIn' : game.gameStatus == 'Cats game!' || game.gameStatus == 'YOU WON!!' ||  game.gameStatus == 'You Lost!!'}">{{game.gameStatus}}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
